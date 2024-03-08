@@ -10,11 +10,13 @@ import axios from "axios";
 Vue.config.productionTip = false
 Vue.use(ElementUI);
 
+
 axios.interceptors.request.use(config => {
-  console.log(config)
   config.headers.Authorization = window.sessionStorage.getItem('token')
   return config
 })
+
+Vue.prototype.$http = axios
 
 new Vue({
   router,

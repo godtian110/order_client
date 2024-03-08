@@ -41,7 +41,7 @@
 
 
 <script>
-import axios from "axios";
+
 
 export default {
   data() {
@@ -76,16 +76,16 @@ export default {
   },
   methods: {
     login() {
-      this.$refs.loginFormRef.validate((valid) => {
+      this.$refs.loginFormRef.validate(async (valid) => {
         if (!valid) return;
-        axios
+        await this.$http
           .post("http://api.doc.jiyou-tech.com/mock/3979/login", this.loginForm)
           .then((result) => {
             if (result.data.code != 1)
               return this.$message.error("账号或者密码有误！");
             this.$message.success("登陆成功！");
-            console.log(result.data);
-            window.sessionStorage.setItem("token", result.data.token);
+            console.log(result.data.data.token);
+            window.sessionStorage.setItem("token", result.data.data.token);
             this.$router.push("/home");
           });
       });

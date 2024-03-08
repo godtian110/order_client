@@ -14,18 +14,18 @@
       <el-aside width="200px">
         <!-- 菜单 -->
         <el-menu
-          background-color="#2aaaf5"
+          background-color="#373d41"
           text-color="#fff"
-          active-text-color="#ffd04b">
-          <el-submenu index="1">
+          active-text-color="#409eff">
+          <el-submenu :index="item.id+''" v-for="item in menulist" :key="item.id" >
             <template slot="title">
               <i class="el-icon-location"></i>
-              <span>导航一</span>
+              <span>{{item.authname}}</span>
             </template>
-            <el-menu-item index="1-4-1">
+            <el-menu-item :index="subitem.id+''" v-for="subitem in item.children" :key="subitem.id">
               <template slot="title">
                 <i class="el-icon-location"></i>
-                <span>导航一</span>
+                <span>{{subitem.authname}}</span>
               </template>
             </el-menu-item>
           </el-submenu>
@@ -40,6 +40,18 @@
 
 <script>
 export default {
+  data() {
+    return {
+      menulist:[]
+    }
+  },
+  mounted(){
+    this.$http.get("http://api.doc.jiyou-tech.com/mock/3979/home").then(result => {
+      console.log(result.data);
+      if(result.data.code !== 1) return this.$message.error("获取失败");
+      this.menulist=result.data.data;
+    })
+  },
   methods: {
     logout() {
       window.sessionStorage.clear();
@@ -55,7 +67,7 @@ export default {
 }
 
 .el-header {
-  background-color: #2aaaf5;
+  background-color: #373d41;
   display: flex;
   justify-content: space-between;
   padding-left: 0;
@@ -76,7 +88,7 @@ export default {
 }
 
 .el-aside {
-  background-color: #2aaaf5;
+  background-color: #373d41;
 }
 .el-main {
   background-color: #eaedf1;
