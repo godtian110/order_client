@@ -13,6 +13,13 @@ const routes = [
   {
     path: '/home',
     name: 'Home',
+    redirect: '/welcome',
+    children: [
+      {
+        path: '/welcome',
+        component: () => import('../views/WelcomeView.vue')
+      }
+    ],
     component: () => import('../views/HomeView.vue')
   },
   {
@@ -32,7 +39,7 @@ router.beforeEach((to, from, next) => {
   // next 是一个函数，表示放行
   if (to.path === '/login') return next();
   const tokenStr = window.sessionStorage.getItem('token');
-  if(!tokenStr) return next('/login')
+  if (!tokenStr) return next('/login')
   next()
 })
 
