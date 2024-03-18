@@ -11,10 +11,11 @@
     <!-- 页面主体 -->
     <el-container>
       <!-- 侧边栏 -->
-      <el-aside :width="isCollapse ? '64px':'200px'">
+      <el-aside :width="isCollapse ? '64px' : '200px'">
         <div class="toggle-button" @click="toggleCollapse">|||</div>
         <!-- 菜单 -->
         <el-menu
+          default-active="/welcome"
           background-color="#373d41"
           text-color="#fff"
           active-text-color="#409eff"
@@ -23,31 +24,35 @@
           :collapse-transition="false"
           :router="true"
         >
-          <el-submenu
-            :index="item.id + ''"
-            v-for="item in menulist"
-            :key="item.id"
-          >
+          <el-menu-item index="/welcome">
+            <i class="el-icon-menu"></i>
+            <span slot="title">首页</span>
+          </el-menu-item>
+          <el-submenu index="2">
             <template slot="title">
-              <i :class="iconsObj[item.id]"></i>
-              <span>{{ item.authname }}</span>
+              <i :class="iconsObj[1]"></i>
+              <span>菜品</span>
             </template>
             <el-menu-item
-              :index="'/' + subitem.path"
-              v-for="subitem in item.children"
-              :key="subitem.id"
+              :index="'/' + path[item.id]"
+              v-for="item in menulist"
+              :key="item.id"
             >
               <template slot="title">
-                <i :class="iconsObj[subitem.id]"></i>
-                <span>{{ subitem.authname }}</span>
+                <i :class="iconsObj[item.id]"></i>
+                <span>{{ item.authname }}</span>
               </template>
             </el-menu-item>
           </el-submenu>
+          <el-menu-item index="3">
+            <i :class="iconsObj[11]"></i>
+            <span>首页</span>
+          </el-menu-item>
         </el-menu>
       </el-aside>
       <!-- 内容主体 -->
       <el-main>
-        <router-view ></router-view>
+        <router-view></router-view>
       </el-main>
     </el-container>
   </el-container>
@@ -59,8 +64,13 @@ export default {
   data() {
     return {
       menulist: [],
+      path: {
+        0: "welcome",
+        1: "test",
+        2: "ddde",
+      },
       iconsObj: {
-        1: "el-icon-user",
+        1: "el-icon-user", 
         2: "el-icon-s-claim",
         11: "el-icon-goods",
         12: "el-icon-s-claim",
