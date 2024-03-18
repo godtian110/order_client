@@ -11,6 +11,11 @@ const routes = [
     component: () => import('../views/LoginView.vue')
   },
   {
+    path: '/register',
+    name: 'Register',
+    component: () => import('../views/RegisterView.vue'),
+  },
+  {
     path: '/home',
     name: 'Home',
     component: () => import('../views/HomeView.vue'),
@@ -31,6 +36,16 @@ const routes = [
         name: 'Test',
         component: () => import('../views/TestView.vue')
       },
+      {
+        path: '/order',
+        name: 'Order',
+        component: () => import('../views/OrderView.vue')
+      },
+      {
+        path: '/user',
+        name: 'User',
+        component: () => import('../views/UserView.vue')
+      }
     ]
   },
   {
@@ -49,6 +64,7 @@ router.beforeEach((to, from, next) => {
   // from 从哪个路径跳转而来
   // next 是一个函数，表示放行
   if (to.path === '/login') return next();
+  if (to.path === '/register') return next();
   const tokenStr = window.sessionStorage.getItem('token');
   if(!tokenStr) return next('/login')
   next()

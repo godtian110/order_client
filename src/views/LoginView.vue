@@ -5,7 +5,9 @@
       <div class="avatar_box">
         <img src="../assets/logo.png" alt="" />
       </div>
-
+      <div class="register">
+        <router-link to="/register">没有账户？去注册一个</router-link>
+      </div>
       <!-- 登录表单 -->
       <el-form
         ref="loginFormRef"
@@ -41,8 +43,6 @@
 
 
 <script>
-
-
 export default {
   data() {
     return {
@@ -102,8 +102,6 @@ export default {
 <style lang="less" scoped>
 .login_container {
   //   background-color: #2b4b6b;
-  background: url("../static/img/bg.jpeg");
-  background-size: cover;
   height: 100%;
 }
 .login_box {
@@ -135,7 +133,12 @@ export default {
     }
   }
 }
-
+.register {
+  margin-bottom: 5px;
+  width: 200px;
+  margin-top: 75px;
+  margin-left: 235px;
+}
 .login_form {
   position: absolute;
   bottom: 0;
