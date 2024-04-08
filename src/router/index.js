@@ -32,11 +32,6 @@ const routes = [
         component: () => import('../views/TestView.vue')
       },
       {
-        path: '/ddde',
-        name: 'Test',
-        component: () => import('../views/TestView.vue')
-      },
-      {
         path: '/order',
         name: 'Order',
         component: () => import('../views/OrderView.vue')
@@ -50,7 +45,7 @@ const routes = [
   },
   {
     path: '/',
-    redirect: '/login',
+    redirect: '/home',
   }
 ]
 
@@ -65,6 +60,7 @@ router.beforeEach((to, from, next) => {
   // next 是一个函数，表示放行
   if (to.path === '/login') return next();
   if (to.path === '/register') return next();
+  if (to.path === '/welcome') return next();
   const tokenStr = window.sessionStorage.getItem('token');
   if(!tokenStr) return next('/login')
   next()

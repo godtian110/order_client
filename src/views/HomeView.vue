@@ -6,7 +6,10 @@
         <img src="../static/img/logo.png" />
         <span>良辰线上餐厅</span>
       </div>
-      <el-button type="info" @click="logout">退出</el-button>
+      <div>
+        <span style="margin-right: 15px">root</span>
+        <el-button type="info" @click="logout" style="margin-right: 15px">退出</el-button>
+      </div>
     </el-header>
     <!-- 页面主体 -->
     <el-container>
@@ -30,7 +33,7 @@
           </el-menu-item>
           <el-submenu index="2">
             <template slot="title">
-              <i :class="iconsObj[1]"></i>
+              <i class="el-icon-s-grid"></i>
               <span>菜品分类</span>
             </template>
             <el-menu-item
@@ -45,11 +48,11 @@
             </el-menu-item>
           </el-submenu>
           <el-menu-item :index="'/'+ path[3] ">
-            <i :class="iconsObj[11]"></i>
+            <i class="el-icon-s-order"></i>
             <span slot="title">订单中心</span>
           </el-menu-item>
           <el-menu-item :index="'/'+path[4]">
-            <i :class="iconsObj[11]"></i>
+            <i class="el-icon-user-solid"></i>
             <span slot="title">个人中心</span>
           </el-menu-item>
         </el-menu>
@@ -71,17 +74,13 @@ export default {
       path: {
         0: "welcome",
         1: "test",
-        2: "ddde",
+        2: "test",
         3: "order",
         4: "user"
       },
       iconsObj: {
         1: "el-icon-user", 
         2: "el-icon-s-claim",
-        11: "el-icon-goods",
-        12: "el-icon-s-claim",
-        13: "el-icon-user",
-        14: "el-icon-goods",
       },
       isCollapse: false,
     };
